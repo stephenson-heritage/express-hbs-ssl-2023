@@ -20,13 +20,13 @@ const cert = fs.readFileSync("./certs/cert.pem");
 
 const port = normalizePort(process.env.PORT || '7777');
 app.set('port', port);
-app.use(cors());
+
 /**
  * Create HTTP server.
  */
 
 const server = https.createServer({ key: key, cert: cert }, app);
-
+app.use(cors());
 console.log(port);
 
 /**

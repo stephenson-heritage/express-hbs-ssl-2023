@@ -3,10 +3,11 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const auth = require('./modules/auth');
+
 
 
 const indexRouter = require('./routes/index');
+const geoRouter = require('./routes/geo');
 
 
 
@@ -31,14 +32,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// login/auth module middleware : no path -> 
-//	run for every request that reaches this line
-app.use(auth);
+
 
 
 
 app.use('/', indexRouter);
 
+app.use('/geo', geoRouter);
 
 
 // catch 404 and forward to error handler
